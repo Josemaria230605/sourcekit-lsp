@@ -1,0 +1,29 @@
+import UIKit
+
+class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Para solicitar al usuario que configure un código de acceso
+        let alert = UIAlertController(title: "Configurar Código", message: "Por favor, configura un nuevo código de acceso", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nuevo Código"
+            textField.keyboardType = .numberPad
+        }
+        
+        alert.addAction(UIAlertAction(title: "Guardar", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            if let code = textField?.text {
+                // Aquí deberías implementar la lógica para guardar el código de acceso.
+                // Esto es solo un ejemplo, ya que no puedes realmente configurar el código de acceso del sistema desde una app.
+                print("Código guardado: \(code)")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}
